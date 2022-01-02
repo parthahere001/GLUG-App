@@ -126,7 +126,7 @@ class _ContactUsState extends State<ContactUs> {
           ),
           Expanded(
               child: (contact!=null)?ListView.builder(
-                itemCount: 4,
+                itemCount: contact.length ,
                 itemBuilder: (BuildContext context,int index){
                   return _tile(contact[index]['name'], contact[index]['phone_number'], contact[index]['email']);
                 }):Center(child: CircularProgressIndicator())

@@ -125,7 +125,7 @@ class _MyClassState extends State<EventInfo> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 15, 10, 20),
+        padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[

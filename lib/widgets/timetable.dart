@@ -27,7 +27,8 @@ class TimeTable extends StatefulWidget {
 }
 
 class _TimeTableState extends State<TimeTable> {
-  dynamic color={};dynamic data;
+  dynamic color = {};
+  dynamic data;
   //  getData()async{
   //   CollectionReference timetable =
   //   FirebaseFirestore.instance.collection('timetable');
@@ -39,30 +40,26 @@ class _TimeTableState extends State<TimeTable> {
   //   });
   //
   // }
-  void colorSc()async{
+  void colorSc() async {
     RoutineData routineData = RoutineData();
     var set = <String>{};
-    for(var i = 0;i<11;i++){
-      for( var j =0;j<6;j++){
-        if(data[i][j]!="" && data[i][j].toString().length>=1 && (i!=0 && j!=0))
-          set.add(data[i][j].toString());
+    for (var i = 0; i < 11; i++) {
+      for (var j = 0; j < 6; j++) {
+        if (data[i][j] != "" &&
+            data[i][j].toString().length >= 1 &&
+            (i != 0 && j != 0)) set.add(data[i][j].toString());
       }
     }
-    int c=1;
+    int c = 1;
     set.forEach((element) {
-      if(c==19)
-        c=0;
+      if (c == 19) c = 0;
       // print(element);
-      color[element]=routineData.colorScheme[c];
+      color[element] = routineData.colorScheme[c];
       // print(color[element]);
       c++;
-
-    }
-    );
-
-
-
+    });
   }
+
   StreamController _streamController;
   List<Map> list;
   DatabaseProvider _databaseProvider;
@@ -242,61 +239,99 @@ class _TimeTableState extends State<TimeTable> {
                                         timings: true);
                                   }
                                 },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: ((index / 6).toInt() == 0 ||
-                                          index % 6 == 0)
-                                          ? DynamicTheme.of(context).themeId ==
-                                          1
-                                          ? Colors.black
-                                          : Colors.white
-
-                                          : (data[(index / 6).toInt()][index % 6].toString().length<1)?Colors.grey.shade200
-                                          :color[data[(index/6).toInt()][index%6]]
-                                      ),
-                                  child: Center(
-                                      child: Transform(
-                                          alignment: FractionalOffset.center,
-                                          transform: new Matrix4.identity()
-                                            ..rotateZ(0 * 3.1415927 / 180),
-                                          child: ((index / 6).toInt() == 0 ||
+                                child: Stack(
+                                  alignment: AlignmentDirectional.topEnd,
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          border: (index % 6 == 0 && index != 0)
+                                              ? Border.all(
+                                                  width: 1.0,
+                                                  color:
+                                                      (DynamicTheme.of(context)
+                                                                  .themeId ==
+                                                              1)
+                                                          ? Colors.white
+                                                          : Colors.black,
+                                                )
+                                              : null,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: ((index / 6).toInt() == 0 ||
                                                   index % 6 == 0)
-                                              ? Text(
-                                                  "${data[(index / 6).toInt()][index % 6]}",
-                                                  // "1",
-                                                  style: TextStyle(
-                                                      fontSize:
-                                                          MediaQuery.of(context)
+                                              ? DynamicTheme.of(context)
+                                                          .themeId ==
+                                                      1
+                                                  ? Colors.black
+                                                  : Colors.white
+                                              : (data[(index / 6).toInt()]
+                                                              [index % 6]
+                                                          .toString()
+                                                          .length <
+                                                      1)
+                                                  ? Colors.grey.shade200
+                                                  : color[
+                                                      data[(index / 6).toInt()]
+                                                          [index % 6]]),
+                                      child: Center(
+                                          child: Transform(
+                                              alignment:
+                                                  FractionalOffset.center,
+                                              transform: new Matrix4.identity()
+                                                ..rotateZ(0 * 3.1415927 / 180),
+                                              child: ((index / 6).toInt() ==
+                                                          0 ||
+                                                      index % 6 == 0)
+                                                  ? Text(
+                                                      "${data[(index / 6).toInt()][index % 6]}",
+                                                      // "1",
+                                                      style: TextStyle(
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
                                                                   .size
                                                                   .width *
                                                               0.046,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                )
-                                              : Text(
-                                            "${data[(index / 6).toInt()][index % 6]}",
-                                            style: TextStyle(fontSize:
-                                            MediaQuery.of(context)
-                                                .size
-                                                .width *
-                                                0.046,
-                                                fontWeight:
-                                                FontWeight.w600,
-                                                color: Colors.black
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    )
+                                                  : Text(
+                                                      "${data[(index / 6).toInt()][index % 6]}",
+                                                      style: TextStyle(
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.046,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: Colors.black),
+                                                    )
 
+                                              // "1")
+                                              // child: Text("${data[section]["${(index/6).toInt()}"][index%6]}",
+                                              // style: TextStyle(
+                                              //   fontSize: MediaQuery.of(context).size.width * 0.046,
+                                              //   fontWeight: FontWeight.w600
+                                              // ),
+                                              // ),
+
+                                              )),
+                                    ),
+                                    (index % 6 == 0 && index != 0)
+                                        ? Padding(
+                                            padding: const EdgeInsets.all(5.0),
+                                            child: Icon(
+                                              Icons.edit,
+                                              color: (DynamicTheme.of(context)
+                                                          .themeId ==
+                                                      1)
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                              size: 15,
                                             ),
                                           )
-
-                                          // "1")
-                                          // child: Text("${data[section]["${(index/6).toInt()}"][index%6]}",
-                                          // style: TextStyle(
-                                          //   fontSize: MediaQuery.of(context).size.width * 0.046,
-                                          //   fontWeight: FontWeight.w600
-                                          // ),
-                                          // ),
-
-                                          )),
+                                        : Container(),
+                                  ],
                                 ),
                               ));
                         },

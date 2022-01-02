@@ -40,8 +40,8 @@ class _FirstScreenState extends State<FirstScreen> {
     {
       "title": "Customise\nyour Timetable",
       "body": "Build a customised routine for your daily schedule!",
-      "image": "images/eventArtboard.png",
-      "color": Color(0xFFF57232),
+      "image": "images/timeTable.png",
+      "color": Color(0xFF877FF0),
       "route": Routine(),
     },
   ];
@@ -148,7 +148,7 @@ class _FirstScreenState extends State<FirstScreen> {
                   ],
                 ),
                 decoration: BoxDecoration(
-                  color:data[i]["color"],
+                  color: data[i]["color"],
                   borderRadius: BorderRadius.circular(20.0),
                 ),
               ),
@@ -170,7 +170,7 @@ class _FirstScreenState extends State<FirstScreen> {
     for (int i = 0; i < items; i++) {
       double s = i == _currentPage ? 10.0 : 8.0;
       Color c = i == _currentPage
-          ? (DynamicTheme.of(context).themeId==1
+          ? (DynamicTheme.of(context).themeId == 1
               ? Colors.white
               : Colors.black)
           : Colors.grey;
@@ -237,7 +237,7 @@ class _FirstScreenState extends State<FirstScreen> {
                               : IconButton(
                                   icon: Icon(Icons.sort),
                                   iconSize: 35.0,
-                                  color: ( DynamicTheme.of(context).themeId==1
+                                  color: (DynamicTheme.of(context).themeId == 1
                                       ? Colors.white
                                       : Colors.black),
                                   onPressed: () {
@@ -263,7 +263,7 @@ class _FirstScreenState extends State<FirstScreen> {
                               : IconButton(
                                   icon: Icon(Icons.notifications),
                                   iconSize: 30.0,
-                                  color: (DynamicTheme.of(context).themeId==1
+                                  color: (DynamicTheme.of(context).themeId == 1
                                       ? Colors.white
                                       : Colors.black),
                                   onPressed: () {
