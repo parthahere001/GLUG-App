@@ -39,9 +39,10 @@ class FirestoreProvider {
   }
 
   Future<bool> showSurprise() async {
-    final uid = "sUBMozuYLEsONSSB9VOi";
-    DocumentSnapshot doc = await _firestore.collection("users").doc(uid).get();
-    return doc["surprise"];
+    // final uid = "sUBMozuYLEsONSSB9VOi";
+    // DocumentSnapshot doc = await _firestore.collection("users").doc(uid).get();
+    // return doc["surprise"];
+    return false;
   }
 
   void addStarredNotice(noticeData) async {

@@ -338,7 +338,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 50,
+                          height: 5,
                           width: 1000,
                         ),
                         Text(

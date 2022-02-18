@@ -1,8 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:glug_app/resources/api_provider.dart';
+class ContactUs extends StatefulWidget {
+  @override
+  _ContactUsState createState() => _ContactUsState();
+}
 
-class ContactUs extends StatelessWidget {
+class _ContactUsState extends State<ContactUs> {
+  dynamic contact;
+
   _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -76,8 +83,17 @@ class ContactUs extends StatelessWidget {
     );
   }
 
+  Future getContact() async{
+     ApiProvider apiProvider = ApiProvider();
+     dynamic data = await apiProvider.fetchContactData();
+     setState(() {
+       contact=data;
+     });
+  }
+
   @override
   Widget build(BuildContext context) {
+    getContact();
     return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         body: SafeArea(
@@ -109,18 +125,12 @@ class ContactUs extends StatelessWidget {
             ),
           ),
           Expanded(
-              child: ListView(
-            children: <Widget>[
-              _tile("Liman Rahman (President)", "+91 9475522304",
-                  "president@nitdgplug.org"),
-              _tile("Akshat Jain (General Secretary)", "+91 8004937056",
-                  "gs@nitdgplug.org"),
-              _tile("Ayush Shukla (Treasurer)", "+91 8001507060",
-                  "treasurer@nitdgplug.org"),
-              _tile("Archana Choudhary (Convener)", "+91 7044791608",
-                  "convenor@nitdgplug.org"),
-            ],
-          ))
+              child: (contact!=null)?ListView.builder(
+                itemCount: contact.length ,
+                itemBuilder: (BuildContext context,int index){
+                  return _tile(contact[index]['name'], contact[index]['phone_number'], contact[index]['email']);
+                }):Center(child: CircularProgressIndicator())
+          )
         ])));
   }
 }

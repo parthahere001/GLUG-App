@@ -1,7 +1,10 @@
+import 'package:glug_app/blocs/timetable_bloc.dart';
 import 'package:glug_app/models/blog_post_model.dart';
 import 'package:glug_app/models/blog_response.dart';
 import 'package:glug_app/models/event_model.dart';
 import 'package:glug_app/models/event_response.dart';
+import 'package:glug_app/models/timetable_response.dart';
+import 'package:glug_app/resources/routine_data.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:path/path.dart';
@@ -33,6 +36,15 @@ class DatabaseProvider {
   static const String BLOG_CONTENT = "content_body";
   static const String BLOG_DATE = "date_to_show";
   static const String BLOG_COMMENTS = "comments";
+
+  static const String TIME_TABLE = "TIMETABLE";
+  static const String TIME = "tme";
+  static const String TIMINGS = "timings";
+  static const String MONDAY = "Mon";
+  static const String TUESDAY = "Tue";
+  static const String WEDNESDAY = "Wed";
+  static const String THURSDAY = "Thu";
+  static const String FRIDAY = "Fri";
 
   static const String DB_FILE_NAME = "glugDB.db";
 
@@ -120,8 +132,39 @@ class DatabaseProvider {
           "$BLOG_COMMENTS TEXT"
           ")",
         );
+        // print("Creating Timetable");
+        // await db.execute("CREATE TABLE $TIME_TABLE ("
+        //     "$TIME TEXT PRIMARY KEY,"
+        //     "$MONDAY TEXT,"
+        //     "$TUESDAY TEXT,"
+        //     "$WEDNESDAY TEXT,"
+        //     "$THURSDAY TEXT,"
+        //     "$FRIDAY TEXT"
+        //     ")");
+        // await setEmptyTimetable();
       },
     );
+  }
+
+  Future<int> createTimetable() async {
+    print("Creating Timetable");
+    try {
+      final db = await database;
+      await db.execute("CREATE TABLE $TIME_TABLE ("
+          "$TIME TEXT PRIMARY KEY,"
+          "$TIMINGS TEXT UNIQUE,"
+          "$MONDAY TEXT,"
+          "$TUESDAY TEXT,"
+          "$WEDNESDAY TEXT,"
+          "$THURSDAY TEXT,"
+          "$FRIDAY TEXT"
+          ")");
+      await setEmptyTimetable();
+      return 0;
+    } catch (error, stackTrace) {
+      print("Exception occured: $error stackTrace: $stackTrace");
+      return -1;
+    }
   }
 
   Future<EventResponse> fetchEventData() async {
@@ -160,6 +203,19 @@ class DatabaseProvider {
     } catch (error, stackTrace) {
       print("Exception occured: $error stackTrace: $stackTrace");
       return BlogResponse.withError("$error");
+    }
+  }
+
+  Future<TimetableResponse> fetchTimeTableData() async {
+    print("Timetable entered");
+    try {
+      final db = await database;
+      var res = await db.query(TIME_TABLE);
+      print(res.toString());
+      return TimetableResponse.fromJSON(res);
+    } catch (error, stackTrace) {
+      print("Exception occured: $error Stacktrace: $stackTrace");
+      return TimetableResponse.withError(error);
     }
   }
 
@@ -230,6 +286,14 @@ class DatabaseProvider {
     return list;
   }
 
+  Future<List<Map>> getTimeTableData() async {
+    final db = await database;
+    List<Map> list = await db.rawQuery("SELECT * FROM $TIME_TABLE");
+    print("Get Time Table Data");
+    print(list);
+    return list;
+  }
+
   addAttedance(int id, int total, int attended) async {
     final db = await database;
     int t = total + 1;
@@ -282,5 +346,34 @@ class DatabaseProvider {
         ['$name', '$t', '$a', '$g', '$id']);
     print(name);
     attendanceBloc.fetchAllData();
+  }
+
+  updateTimetableSubject(String time, String day, String subject) async {
+    final db = await database;
+    await db.rawUpdate(
+        'UPDATE $TIME_TABLE SET $day=? WHERE tme=?', ['$subject', '$time']);
+    print(subject);
+    timeTableBloc.fetchAllData();
+  }
+
+  updateTimeTableTimings(String time, String timings) async {
+    final db = await database;
+    await db.rawUpdate(
+        'UPDATE $TIME_TABLE SET timings=? WHERE tme=?', ['$timings', '$time']);
+    timeTableBloc.fetchAllData();
+  }
+
+  setEmptyTimetable() async {
+    final db = await database;
+    List<List<String>> time = RoutineData().data as List<List<String>>;
+    for (var i = 1; i < time.length; i++) {
+      await db.rawInsert(
+          'INSERT INTO $TIME_TABLE VALUES("${RoutineData().data[i][0]}","${RoutineData().data[i][0]}","${RoutineData().data[i][1]}", "${RoutineData().data[i][2]}","${RoutineData().data[i][3]}","${RoutineData().data[i][4]}","${RoutineData().data[i][5]}")');
+    }
+  }
+
+  deleteTimetable() async {
+    final db = await database;
+    await db.execute("DROP TABLE IF EXISTS $TIME_TABLE");
   }
 }

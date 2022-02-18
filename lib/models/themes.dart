@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:dynamic_theme/dynamic_theme.dart';
+import 'package:dynamic_themes/dynamic_themes.dart';
+
+class AppThemes {
+  static const int Light = 0;
+  static const int Dark = 1;
+}
 
 class Themes {
   static final ThemeData darkTheme = ThemeData(
@@ -41,9 +46,10 @@ class Themes {
   );
 
   static void changeTheme(context) {
-    DynamicTheme.of(context).setThemeData(
-        Theme.of(context).primaryColor == Colors.black
-            ? lightTheme
-            : darkTheme);
+    print(DynamicTheme.of(context).themeId);
+    DynamicTheme.of(context).setTheme(
+        DynamicTheme.of(context).themeId == 1
+            ? AppThemes.Light
+            : AppThemes.Dark);
   }
 }

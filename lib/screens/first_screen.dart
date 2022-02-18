@@ -1,7 +1,9 @@
+import 'package:dynamic_themes/dynamic_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:glug_app/screens/firebase_messaging_demo_screen.dart';
 import 'package:glug_app/screens/home_screen.dart';
 import 'package:glug_app/screens/notice_screen.dart';
+import 'routine.dart';
 
 import 'attendance_tracker_screen.dart';
 
@@ -34,6 +36,13 @@ class _FirstScreenState extends State<FirstScreen> {
       "image": "images/noticeArtboard.png",
       "color": Color(0xFF8DB6FA),
       "route": NoticeScreen(),
+    },
+    {
+      "title": "Customise\nyour Timetable",
+      "body": "Build a customised routine for your daily schedule!",
+      "image": "images/timeTable.png",
+      "color": Color(0xFF877FF0),
+      "route": Routine(),
     },
   ];
 
@@ -154,14 +163,14 @@ class _FirstScreenState extends State<FirstScreen> {
   }
 
   _buildDots() {
-    int items = 3;
+    int items = 4;
 
     List<Widget> dots = [];
 
     for (int i = 0; i < items; i++) {
       double s = i == _currentPage ? 10.0 : 8.0;
       Color c = i == _currentPage
-          ? (Theme.of(context).primaryColor == Colors.black
+          ? (DynamicTheme.of(context).themeId == 1
               ? Colors.white
               : Colors.black)
           : Colors.grey;
@@ -228,8 +237,7 @@ class _FirstScreenState extends State<FirstScreen> {
                               : IconButton(
                                   icon: Icon(Icons.sort),
                                   iconSize: 35.0,
-                                  color: (Theme.of(context).primaryColor ==
-                                          Colors.black
+                                  color: (DynamicTheme.of(context).themeId == 1
                                       ? Colors.white
                                       : Colors.black),
                                   onPressed: () {
@@ -255,8 +263,7 @@ class _FirstScreenState extends State<FirstScreen> {
                               : IconButton(
                                   icon: Icon(Icons.notifications),
                                   iconSize: 30.0,
-                                  color: (Theme.of(context).primaryColor ==
-                                          Colors.black
+                                  color: (DynamicTheme.of(context).themeId == 1
                                       ? Colors.white
                                       : Colors.black),
                                   onPressed: () {
@@ -273,7 +280,7 @@ class _FirstScreenState extends State<FirstScreen> {
                     Expanded(
                       child: PageView.builder(
                         controller: _ctrl,
-                        itemCount: 3,
+                        itemCount: 4,
                         itemBuilder: (ctxt, index) {
                           return _buildPage(context, index);
                         },

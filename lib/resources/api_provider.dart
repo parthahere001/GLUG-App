@@ -1,5 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
-
+import 'dart:core';
 import 'package:dio/dio.dart';
 import 'package:glug_app/models/blog_response.dart';
 import 'package:glug_app/models/devto_model.dart';
@@ -22,7 +23,8 @@ class ApiProvider {
   static final String timelineUrl = "$baseURL/api/timeline/";
   static final String techbytesURL = "$baseURL/api/techbytes/";
   static final String noticeURL =
-      "https://admin.nitdgp.ac.in/academics/notices";
+      "http://notices.nitdgplug.org/";
+  static final String contactURL = "https://api.nitdgplug.org/api/contact/?format=json";
 
   static final String purgoMalumURL =
       "https://www.purgomalum.com/service/json?text";
@@ -98,10 +100,22 @@ class ApiProvider {
 
   Future<Notice> fetchNoticeData() async {
     try {
+
       Response response = await _dio.get(noticeURL);
-      //print(response.data.toString());
-      return Notice.fromJson(response.data);
-    } catch (error, stackTrace) {
+      return Notice.fromJson((response.data));
+    }
+    catch (error, stackTrace) {
+      print("Exception occured: $error stackTrace: $stackTrace");
+      return null;
+    }
+  }
+  Future fetchContactData() async {
+    try {
+
+      Response response = await _dio.get(contactURL);
+       return response.data;
+    }
+    catch (error, stackTrace) {
       print("Exception occured: $error stackTrace: $stackTrace");
       return null;
     }

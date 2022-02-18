@@ -17,6 +17,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:glug_app/screens/club_activity_search.dart';
 import 'package:glug_app/widgets/loader_w.dart';
 
+
 import 'blog_info.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -237,11 +238,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ]),
           ),
+
+              SizedBox(
+                height: 10.0,
+              ),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
+
+
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -256,8 +263,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 style: TextStyle(
                                     fontFamily: "Nexa-Bold",
                                     fontSize:
-                                        MediaQuery.of(context).size.width *
-                                            0.052,
+                                    MediaQuery.of(context).size.width *
+                                        0.052,
                                     fontWeight: FontWeight.bold,
                                     fontStyle: FontStyle.normal),
                               ),
@@ -266,8 +273,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 style: TextStyle(
                                     fontFamily: "Nexa-Bold",
                                     fontSize:
-                                        MediaQuery.of(context).size.width *
-                                            0.052,
+                                    MediaQuery.of(context).size.width *
+                                        0.052,
                                     fontWeight: FontWeight.bold,
                                     fontStyle: FontStyle.normal,
                                     color: Colors.deepOrange),
@@ -277,12 +284,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 style: TextStyle(
                                   fontFamily: "Nexa-Bold",
                                   fontSize:
-                                      MediaQuery.of(context).size.width * 0.052,
+                                  MediaQuery.of(context).size.width * 0.052,
                                   fontWeight: FontWeight.bold,
                                   fontStyle: FontStyle.normal,
                                 ),
                               ),
-                            ])),
+                            ]
+                        )
+                    ),
                   ),
                   StreamBuilder(
                       stream: upcomingEventsBloc.allUpcomingEvents,
@@ -308,7 +317,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               autoPlay: true,
                               autoPlayInterval: Duration(seconds: 5),
                               autoPlayAnimationDuration:
-                                  Duration(milliseconds: 800),
+                              Duration(milliseconds: 800),
                               autoPlayCurve: Curves.fastOutSlowIn,
                               enlargeCenterPage: true,
                               scrollDirection: Axis.horizontal,

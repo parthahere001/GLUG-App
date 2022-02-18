@@ -72,7 +72,6 @@ class _NoticeScreenState extends State<NoticeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("build");
     return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         body: SafeArea(

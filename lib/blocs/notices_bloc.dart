@@ -19,10 +19,13 @@ class NoticeBloc {
     _noticeCategoryFetcher.sink.add(null);
     Notice notice = await _respository.fetchAllNotices();
     if (noticeCategory == "General") {
+
       List<Academic> calledNotice = notice.notices.general;
+
       if (!_noticeCategoryFetcher.isClosed)
         _noticeCategoryFetcher.sink.add(calledNotice);
-    } else if (noticeCategory == "Academic") {
+    }
+    else if (noticeCategory == "Academic") {
       List<Academic> calledNotice = notice.notices.academic;
       if (!_noticeCategoryFetcher.isClosed)
         _noticeCategoryFetcher.sink.add(calledNotice);

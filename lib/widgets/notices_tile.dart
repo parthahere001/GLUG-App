@@ -59,9 +59,8 @@ class _NoticeTileState extends State<NoticeTile> {
       String url = widget.notice.file.toString();
       String fileName =
           url.substring(url.lastIndexOf('/') + 1, url.lastIndexOf('.'));
-      print(fileName);
-      var response = await dio.get(url,
-          options: Options(responseType: ResponseType.bytes));
+      print(url);
+      var response = await dio.get(url,options: Options(responseType: ResponseType.bytes));
       var bytes = response.data;
 
       var dir = await getTemporaryDirectory();

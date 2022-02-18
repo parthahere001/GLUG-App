@@ -32,7 +32,11 @@ class _MembersScreenState extends State<MembersScreen> {
     "Rishav",
     "Nikhil",
     "Anurag",
-    "Subhadip"
+    "Subhadip",
+    "Srijan",
+    "Swastik",
+    "Archit",
+    "Mayank"
   ];
 
   @override

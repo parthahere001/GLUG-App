@@ -124,121 +124,124 @@ class _MyClassState extends State<EventInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            // Hero(
-            //  tag: widget.hash,
-            // child:
-            Container(
-              constraints: BoxConstraints.expand(
-                height: 250.0,
-              ),
-              alignment: Alignment.bottomLeft,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: event.event_image != null
-                      ? CachedNetworkImageProvider(event.event_image)
-                      : AssetImage('images/glug_logo.jpeg'),
-                  fit: BoxFit.cover,
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              // Hero(
+              //  tag: widget.hash,
+              // child:
+              Container(
+                constraints: BoxConstraints.expand(
+                  height: 250.0,
                 ),
-              ),
-              child: Wrap(
-                direction: Axis.vertical,
-                spacing: 10,
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(bottom: 90.0),
-                    height: 50.0,
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.arrow_back,
+                alignment: Alignment.bottomLeft,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: event.event_image != null
+                        ? CachedNetworkImageProvider(event.event_image)
+                        : AssetImage('images/glug_logo.jpeg'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Wrap(
+                  direction: Axis.vertical,
+                  spacing: 10,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.only(bottom: 90.0),
+                      height: 50.0,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.arrow_back,
+                        ),
+                        color: Colors.white,
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                        },
                       ),
-                      color: Colors.white,
-                      onPressed: () {
-                        Navigator.of(context).pop(true);
-                      },
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20.0),
+                      height: 50.0,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor.withOpacity(0.7),
+                        // color: Color.fromARGB(210, 255, 255, 255),
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(50.0),
+                          bottomRight: Radius.circular(50.0),
+                        ),
+                      ),
+                      child: _getDate(event.event_timing),
+                    ),
+                  ],
+                ),
+              ), //),
+              SizedBox(
+                height: 20.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(
+                    Icons.watch_later,
+                    color: Colors.red,
+                  ),
+                  SizedBox(
+                    width: 5.0,
+                  ),
+                  Text(
+                    _getTime(event.event_timing),
+                    style: TextStyle(
+                      fontFamily: "Montserrat",
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(bottom: 20.0),
-                    height: 50.0,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor.withOpacity(0.7),
-                      // color: Color.fromARGB(210, 255, 255, 255),
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(50.0),
-                        bottomRight: Radius.circular(50.0),
-                      ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Icon(Icons.location_on),
+                  SizedBox(
+                    width: 5.0,
+                  ),
+                  Text(
+                    event.venue != null ? event.venue : 'Online',
+                    style: TextStyle(
+                      fontFamily: "Montserrat",
                     ),
-                    child: _getDate(event.event_timing),
                   ),
                 ],
               ),
-            ), //),
-            SizedBox(
-              height: 20.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Icon(
-                  Icons.watch_later,
-                  color: Colors.red,
-                ),
-                SizedBox(
-                  width: 5.0,
-                ),
-                Text(
-                  _getTime(event.event_timing),
-                  style: TextStyle(
-                    fontFamily: "Montserrat",
-                  ),
-                ),
-                SizedBox(
-                  width: 10.0,
-                ),
-                Icon(Icons.location_on),
-                SizedBox(
-                  width: 5.0,
-                ),
-                Text(
-                  event.venue != null ? event.venue : 'Online',
-                  style: TextStyle(
-                    fontFamily: "Montserrat",
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 15.0,
-            ),
-            // _interestedButton(),
-            SizedBox(
-              height: 7.0,
-            ),
-            Html(
-              data: event.description,
-              //Optional parameters:
-              padding: EdgeInsets.all(8.0),
-
-              defaultTextStyle: TextStyle(fontFamily: "Montserrat"),
-              linkStyle: const TextStyle(
-                color: Colors.blue,
+              SizedBox(
+                height: 15.0,
               ),
-              useRichText: false,
-              onLinkTap: (url) {
-                print("Opening $url");
-                _launchURL(url);
-              },
-              onImageTap: (src) {
-                // Display the image in large form.
-              },
-            ),
-            SizedBox(
-              height: 25.0,
-            ),
-          ],
+              // _interestedButton(),
+              SizedBox(
+                height: 7.0,
+              ),
+              Html(
+                data: event.description,
+                //Optional parameters:
+                padding: EdgeInsets.all(8.0),
+
+                defaultTextStyle: TextStyle(fontFamily: "Montserrat"),
+                linkStyle: const TextStyle(
+                  color: Colors.blue,
+                ),
+                useRichText: false,
+                onLinkTap: (url) {
+                  print("Opening $url");
+                  _launchURL(url);
+                },
+                onImageTap: (src) {
+                  // Display the image in large form.
+                },
+              ),
+              SizedBox(
+                height: 25.0,
+              ),
+            ],
+          ),
         ),
       ),
     );

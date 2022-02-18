@@ -93,7 +93,12 @@ class Repository {
   Future<ProfileResponse> fetchAllProfiles() async =>
       _apiProvider.fetchProfileData();
 
-  Future<Notice> fetchAllNotices() async => _apiProvider.fetchNoticeData();
+  Future<Notice> fetchAllNotices() async {
+    Future<Notice> nn = _apiProvider.fetchNoticeData();
+    // print(nn);
+    return nn;
+  }
+
 
   Future<DevToResponse> fetchAllDevTo() async => _apiProvider.fetchDevToData();
 

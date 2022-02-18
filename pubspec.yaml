@@ -11,7 +11,7 @@ description: The official app for the GNU LInux Users&#x27; Group NITDGP
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 2.0.0+1
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
@@ -33,13 +33,13 @@ dependencies:
   rxdart: ^0.24.0
   date_format: ^1.0.8
   flutter_html: ^0.11.1
-  firebase_messaging: ^6.0.13
+  firebase_messaging:
   font_awesome_flutter: ^8.8.1
   carousel_slider: ^2.2.1
   timeago: ^2.0.26
   characters: ^1.0.0
   sqflite: any
-  path_provider: ^1.6.11
+  path_provider:
   cached_network_image: ^2.2.0+1
   connectivity: ^0.4.9
   flutter_pdfview: ^1.0.0+10
@@ -48,14 +48,14 @@ dependencies:
   flutter_spinkit: ^4.1.2
   random_words: ^1.0.2
   progress_dialog: ^1.2.4
-  double_back_to_close_app: ^1.2.0
+  double_back_to_close_app: ^2.1.0
   intro_slider: ^2.3.3
-  dynamic_theme: ^1.0.0
-  shared_preferences: ^0.5.12+4
+  dynamic_themes: ^1.1.0
+  shared_preferences:
   flare_loading: ^2.1.1
   permission_handler: ^5.0.1+1
   flutter_inappwebview: ^4.0.0+4
-
+  sizer:
 dev_dependencies:
   flutter_test:
     sdk: flutter

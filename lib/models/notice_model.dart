@@ -6,8 +6,8 @@ class Notice {
   final Notices notices;
 
   factory Notice.fromJson(Map<String, dynamic> json) => Notice(
-        notices: Notices.fromJson(json["notices"]),
-      );
+    notices: Notices.fromJson(json["notices"]),
+  );
 }
 
 class Notices {
@@ -24,15 +24,15 @@ class Notices {
   final List<Academic> hostel;
 
   factory Notices.fromJson(Map<String, dynamic> json) => Notices(
-        general: List<Academic>.from(
-            json["General"].map((x) => Academic.fromJson(x))),
-        student: List<Academic>.from(
-            json["Student"].map((x) => Academic.fromJson(x))),
-        academic: List<Academic>.from(
-            json["Academic"].map((x) => Academic.fromJson(x))),
-        hostel: List<Academic>.from(
-            json["Hostel"].map((x) => Academic.fromJson(x))),
-      );
+    general: List<Academic>.from(
+        json["General"].map((x) => Academic.fromJson(x))),
+    student: List<Academic>.from(
+        json["Student"].map((x) => Academic.fromJson(x))),
+    academic: List<Academic>.from(
+        json["Academic"].map((x) => Academic.fromJson(x))),
+    hostel: List<Academic>.from(
+        json["Hostel"].map((x) => Academic.fromJson(x))),
+  );
 }
 
 class Academic {
@@ -47,8 +47,8 @@ class Academic {
   final String date;
 
   factory Academic.fromJson(Map<String, dynamic> json) => Academic(
-        title: json["title"],
-        file: json["file"],
-        date: json["date"],
-      );
+    title:json["title"],
+    file: json["file"],
+    date: json["date"],
+  );
 }
