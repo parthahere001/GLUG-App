@@ -73,51 +73,52 @@ class FirestoreProvider {
     final uid = await getCurrentUserID();
     DocumentSnapshot snap = await _firestore.collection("users").doc(uid).get();
 
-    List<dynamic> starredNotices = snap.data()["starred_notices"];
-    if (starredNotices != null) {
-      starredNotices.forEach((notice) {
-        //print("${notice.toString()} title: $title");
-        var t = notice["title"].toString();
-        print("$title and $t");
-        if (t.trim() == title.toString().trim()) {
-          return true;
-        }
-      });
-    }
-    return false;
-  }
+    //   List<dynamic> starredNotices = snap.data()["starred_notices"];
+    //   if (starredNotices != null) {
+    //     starredNotices.forEach((notice) {
+    //       //print("${notice.toString()} title: $title");
+    //       var t = notice["title"].toString();
+    //       print("$title and $t");
+    //       if (t.trim() == title.toString().trim()) {
+    //         return true;
+    //       }
+    //     });
+    //   }
+    //   return false;
+    // }
 
-  Future<List<String>> fetchStaredNoticeTitle() async {
-    final uid = await getCurrentUserID();
-    DocumentSnapshot snap = await _firestore.collection("users").doc(uid).get();
-    List<String> noticeTitles = new List();
-    List<dynamic> starredNotices = snap.data()["starred_notices"];
-    if (starredNotices != null) {
-      starredNotices.forEach((notice) {
-        //print("${notice.toString()} title: $title");
-        var t = notice["title"].toString();
-        noticeTitles.add(t);
-      });
-      return noticeTitles;
-    }
-    return null;
-  }
+    // Future<List<String>> fetchStaredNoticeTitle() async {
+    //   final uid = await getCurrentUserID();
+    //   DocumentSnapshot snap = await _firestore.collection("users").doc(uid).get();
+    //   List<String> noticeTitles = new List();
+    //   List<dynamic> starredNotices = snap.data()["starred_notices"];
+    //   if (starredNotices != null) {
+    //     starredNotices.forEach((notice) {
+    //       //print("${notice.toString()} title: $title");
+    //       var t = notice["title"].toString();
+    //       noticeTitles.add(t);
+    //     });
+    //     return noticeTitles;
+    //   }
+    //   return null;
+    // }
 
-  Future<List<Academic>> fetchStaredNotice() async {
-    final uid = await getCurrentUserID();
-    DocumentSnapshot snap = await _firestore.collection("users").doc(uid).get();
-    List<Academic> notices = new List();
-    List<dynamic> starredNotices = snap.data()["starred_notices"];
-    if (starredNotices != null) {
-      starredNotices.forEach((notice) {
-        Academic academic = Academic(
-            title: notice["title"].toString(),
-            date: notice["date"],
-            file: notice["file"]);
-        notices.add(academic);
-      });
-      return notices;
-    }
-    return null;
+    // Future<List<Academic>> fetchStaredNotice() async {
+    //   final uid = await getCurrentUserID();
+    //   DocumentSnapshot snap = await _firestore.collection("users").doc(uid).get();
+    //   List<Academic> notices = new List();
+    //   List<dynamic> starredNotices = snap.data()["starred_notices"];
+    //   if (starredNotices != null) {
+    //     starredNotices.forEach((notice) {
+    //       Academic academic = Academic(
+    //           title: notice["title"].toString(),
+    //           date: notice["date"],
+    //           file: notice["file"]);
+    //       notices.add(academic);
+    //     });
+    //     return notices;
+    //   }
+    //   return null;
+    // }
   }
 }

@@ -8,27 +8,27 @@ class FirebaseMessagingDemoApp extends StatefulWidget {
 }
 
 class _FirebaseMessagingDemoAppState extends State<FirebaseMessagingDemoApp> {
-  final FirebaseMessaging _fcm = FirebaseMessaging();
+  // final FirebaseMessaging _fcm = FirebaseMessaging();
   List<Message> _messages;
 
-  _getToken() {
-    _fcm.getToken().then((deviceToken) {
-      print('Device token: $deviceToken');
-    });
-  }
+  // _getToken() {
+  //   _fcm.getToken().then((deviceToken) {
+  //     print('Device token: $deviceToken');
+  //   });
+  // }
 
-  _configureFirebaseListeners() {
-    _fcm.configure(onMessage: (Map<String, dynamic> message) async {
-      print('onMessage: $message');
-      _setMessage(message);
-    }, onLaunch: (Map<String, dynamic> message) async {
-      print('onLaunch: $message');
-      _setMessage(message);
-    }, onResume: (Map<String, dynamic> message) async {
-      print('onResume: $message');
-      _setMessage(message);
-    });
-  }
+  // _configureFirebaseListeners() {
+  //   _fcm.configure(onMessage: (Map<String, dynamic> message) async {
+  //     print('onMessage: $message');
+  //     _setMessage(message);
+  //   }, onLaunch: (Map<String, dynamic> message) async {
+  //     print('onLaunch: $message');
+  //     _setMessage(message);
+  //   }, onResume: (Map<String, dynamic> message) async {
+  //     print('onResume: $message');
+  //     _setMessage(message);
+  //   });
+  // }
 
   _setMessage(Map<String, dynamic> message) {
     final notification = message['notification'];
@@ -47,8 +47,8 @@ class _FirebaseMessagingDemoAppState extends State<FirebaseMessagingDemoApp> {
   void initState() {
     super.initState();
     _messages = List<Message>();
-    _getToken();
-    _configureFirebaseListeners();
+    // _getToken();
+    // _configureFirebaseListeners();
   }
 
   @override

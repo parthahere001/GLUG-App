@@ -126,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _signInButton({String type, BuildContext context}) {
-    return RaisedButton(
+    return MaterialButton(
       elevation: 10.0,
       splashColor: Colors.grey,
       onPressed: () {

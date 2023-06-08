@@ -39,7 +39,7 @@ class _StarredNoticeScreenState extends State<StarredNoticeScreen> {
   }
 
   void _getStaredList() async {
-    notices = await _provider.fetchStaredNotice();
+    // notices = await _provider.fetchStaredNotice();
     _streamController.add(notices);
   }
 

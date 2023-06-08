@@ -219,24 +219,24 @@ class _MyClassState extends State<EventInfo> {
               SizedBox(
                 height: 7.0,
               ),
-              Html(
-                data: event.description,
-                //Optional parameters:
-                padding: EdgeInsets.all(8.0),
+              // Html(
+              //   data: event.description,
+              //   //Optional parameters:
+              //   padding: EdgeInsets.all(8.0),
 
-                defaultTextStyle: TextStyle(fontFamily: "Montserrat"),
-                linkStyle: const TextStyle(
-                  color: Colors.blue,
-                ),
-                useRichText: false,
-                onLinkTap: (url) {
-                  print("Opening $url");
-                  _launchURL(url);
-                },
-                onImageTap: (src) {
-                  // Display the image in large form.
-                },
-              ),
+              //   defaultTextStyle: TextStyle(fontFamily: "Montserrat"),
+              //   linkStyle: const TextStyle(
+              //     color: Colors.blue,
+              //   ),
+              //   useRichText: false,
+              //   onLinkTap: (url) {
+              //     print("Opening $url");
+              //     _launchURL(url);
+              //   },
+              //   onImageTap: (src) {
+              //     // Display the image in large form.
+              //   },
+              // ),
               SizedBox(
                 height: 25.0,
               ),

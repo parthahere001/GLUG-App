@@ -129,7 +129,7 @@ class _SubjectFormState extends State<SubjectForm> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              FlatButton(
+              MaterialButton(
                 color: Colors.deepOrangeAccent,
                 onPressed: () {
                   Navigator.of(context).pop();
@@ -142,7 +142,7 @@ class _SubjectFormState extends State<SubjectForm> {
                   ),
                 ),
               ),
-              FlatButton(
+              MaterialButton(
                 color: Colors.deepOrangeAccent,
                 onPressed: () {
                   // if(int.parse(_ctrl3.text)<int.parse(_ctrl2.text)) {

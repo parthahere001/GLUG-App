@@ -208,7 +208,7 @@ class TimingsRoutineState extends State<TimingsRoutine> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  FlatButton(
+                  MaterialButton(
                     color: Colors.deepOrangeAccent,
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -221,7 +221,7 @@ class TimingsRoutineState extends State<TimingsRoutine> {
                       ),
                     ),
                   ),
-                  FlatButton(
+                  MaterialButton(
                     color: Colors.deepOrangeAccent,
                     onPressed: () {
                       print("pressed");

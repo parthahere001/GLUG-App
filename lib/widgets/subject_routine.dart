@@ -74,7 +74,7 @@ class _SubjectRoutineState extends State<SubjectRoutine> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              FlatButton(
+              MaterialButton(
                 color: Colors.deepOrangeAccent,
                 onPressed: () {
                   Navigator.of(context).pop();
@@ -87,7 +87,7 @@ class _SubjectRoutineState extends State<SubjectRoutine> {
                   ),
                 ),
               ),
-              FlatButton(
+              MaterialButton(
                 color: Colors.deepOrangeAccent,
                 onPressed: () async {
                   // SAVE NEW SUBJECT IN ROUTINE HERE

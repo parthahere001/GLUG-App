@@ -66,7 +66,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
   }
 
   void _getStaredList() async {
-    _startedLista = await _provider.fetchStaredNoticeTitle();
+    // _startedLista = await _provider.fetchStaredNoticeTitle();
     _streamController.sink.add(_startedLista);
   }
 

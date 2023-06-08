@@ -289,7 +289,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                                     ),
                                                     Expanded(
                                                       child: InAppWebView(
-                                                          initialUrl:
+                                                          initialFile:
                                                               "https://himanshu272.github.io/",
                                                           initialOptions:
                                                               InAppWebViewGroupOptions(
@@ -297,8 +297,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                                                 InAppWebViewOptions(
                                                               mediaPlaybackRequiresUserGesture:
                                                                   false,
-                                                              debuggingEnabled:
-                                                                  true,
+                                                              // debuggingEnabled:
+                                                              //     true,
                                                             ),
                                                           ),
                                                           onWebViewCreated:
