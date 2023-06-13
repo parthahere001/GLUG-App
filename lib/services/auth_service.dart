@@ -37,19 +37,19 @@ class AuthService {
       assert(user.displayName != null);
       assert(user.photoURL != null);
 
-      DocumentSnapshot doc =
-          await _firestore.collection("/users").doc(user.uid).get();
+      // DocumentSnapshot doc =
+      //     await _firestore.collection("/users").doc(user.uid).get();
 
-      if (!doc.exists) {
-        _firestore.collection("/users").doc(user.uid).set({
-          "name": user.displayName,
-          "email": user.email,
-          "photoURL": user.photoURL,
-          "eventDetail": [],
-          "starred_notices": [],
-          "interested": []
-        });
-      }
+      // if (!doc.exists) {
+      //   _firestore.collection("/users").doc(user.uid).set({
+      //     "name": user.displayName,
+      //     "email": user.email,
+      //     "photoURL": user.photoURL,
+      //     "eventDetail": [],
+      //     "starred_notices": [],
+      //     "interested": []
+      //   });
+      // }
 
       print('Google Sign In succeeded');
       return '$user';

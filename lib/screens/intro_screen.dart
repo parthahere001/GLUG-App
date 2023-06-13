@@ -14,7 +14,7 @@ class IntroScreen extends StatefulWidget {
 }
 
 class IntroScreenState extends State<IntroScreen> {
-  // List<Slide> slides = new List();
+  List<Widget> slides = [];
 
   Widget _getScreen() {
     return StreamBuilder<User>(
@@ -37,41 +37,41 @@ class IntroScreenState extends State<IntroScreen> {
   void initState() {
     super.initState();
 
-    // slides.add(
-    //   new Slide(
-    //     description: "Get up, stretch your arms and take a seat.Let's code!",
-    //     pathImage: "images/splash_1.gif",
-    //     widthImage: 300,
-    //     heightImage: 300,
-    //     backgroundColor: Color(0xff1C1C3C),
-    //   ),
-    // );
-    // slides.add(
-    //   new Slide(
-    //     description:
-    //         "Be sure to make the tiniest of adjustments. They go a long way.",
-    //     pathImage: "images/splash_2.gif",
-    //     widthImage: 300,
-    //     heightImage: 300,
-    //     backgroundColor: Color(0xff1C1C3C),
-    //   ),
-    // );
-    // slides.add(
-    //   new Slide(
-    //     description:
-    //         "All the hard work pays off and Voila! You have a brand new application.",
-    //     pathImage: "images/splash_3.gif",
-    //     widthImage: 300,
-    //     heightImage: 300,
-    //     backgroundColor: Color(0xff1C1C3C),
-    //   ),
-    // );
+    //  slides.add(
+    //     Slide(
+    //      description: "Get up, stretch your arms and take a seat.Let's code!",
+    //      pathImage: "images/splash_1.gif",
+    //      widthImage: 300,
+    //      heightImage: 300,
+    //      backgroundColor: Color(0xff1C1C3C),
+    //    ),
+    //  );
+    //  slides.add(
+    //     Slide(
+    //      description:
+    //          "Be sure to make the tiniest of adjustments. They go a long way.",
+    //      pathImage: "images/splash_2.gif",
+    //      widthImage: 300,
+    //      heightImage: 300,
+    //      backgroundColor: Color(0xff1C1C3C),
+    //    ),
+    //  );
+    //  slides.add(
+    //     Slide(
+    //      description:
+    //          "All the hard work pays off and Voila! You have a brand new application.",
+    //      pathImage: "images/splash_3.gif",
+    //      widthImage: 300,
+    //      heightImage: 300,
+    //      backgroundColor: Color(0xff1C1C3C),
+    //    ),
+    //  );
   }
 
   @override
   Widget build(BuildContext context) {
     return new IntroSlider(
-      // slides: this.slides,
+      listCustomTabs: this.slides,
       onDonePress: () {
         SharedPrefService.saveIntroDone().whenComplete(() {
           Navigator.of(context).pushReplacement(

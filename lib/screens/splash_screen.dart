@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                   child: Stack(
                     children: [
-                      DrawerScreen(),
+                      // DrawerScreen(),
                       FirstScreen(),
                     ],
                   )));
@@ -44,16 +44,16 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    SharedPrefService.getIntroDone().then((isDone) {
-      setState(() {
-        _isIntroDone = isDone;
-      });
-    });
+    // SharedPrefService.getIntroDone().then((isDone) {
+    //   setState(() {
+    //     _isIntroDone = isDone;
+    //   });
+    // });
     Timer(
       Duration(seconds: 2),
       () => Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) {
-          return _isIntroDone ? _getScreen() : IntroScreen();
+          return FirstScreen();
         }),
       ),
     );

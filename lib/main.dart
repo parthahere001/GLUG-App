@@ -110,7 +110,7 @@ class _MainApp extends State<MainApp> {
           debugShowCheckedModeBanner: false,
           title: "GLUG App",
           theme: theme,
-          home: FirstScreen(),
+          home: SplashScreen(),
         );
       },
     );
